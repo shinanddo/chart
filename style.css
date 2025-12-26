@@ -3,68 +3,232 @@
 body {
   margin: 0;
   padding: 16px;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff;
 }
 
-button {
-  width: 100%;
-  padding: 14px;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
+/* ================= 공통 버튼 ================= */
+button{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  background:#000;
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  margin-top:16px;
 }
 
-/* ===== 결과 카드 ===== */
-.bar-wrap {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* ================= 입력 화면 ================= */
+#controls{ display:block; }
+
+.member-control{
+  border:1px solid #000;
+  border-radius:16px;
+  padding:12px;
+  margin-bottom:18px;
 }
 
-/* 🔥 핵심 수정 */
-.sidecol {
-  width: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* 가로 중앙 */
-  justify-content: center;
-  text-align: center;    /* 텍스트 중앙 */
-  font-family: 'Noto Sans KR', sans-serif;
-  line-height: 1.05;
+.member-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.sidecol .label {
-  font-size: 12px;
+.member-header img{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  object-fit:cover;
 }
 
-.sidecol .num {
-  font-size: 16px;
-  font-weight: 700;
+.range-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  margin-top:10px;
 }
 
-/* 바 */
-.bar {
-  position: relative;
-  flex: 1;
-  height: 16px;
-  background: #eee;
-  border-radius: 999px;
+.range-row input[type=range]{ flex:1; }
+
+.range-row .side{
+  width:64px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+  font-family:'Noto Sans KR', sans-serif;
+  line-height:1.1;
 }
 
-.bar-inner {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  background: #000;
-  border-radius: 999px;
+.range-row .side b{
+  font-weight:700;
+  font-size:14px;
+  line-height:1.1;
 }
 
-/* 텍스트 */
-.result-text {
-  margin-top: 12px;
-  padding: 16px;
-  border: 1px solid #000;
-  border-radius: 14px;
-  font-size: 20px;
+.member-control textarea{
+  width:100%;
+  height:70px;
+  margin-top:8px;
+  padding:8px;
+  border-radius:10px;
+  border:1px solid #000;
+  resize:none;
+  font-size:13px;
+  font-family:'Noto Sans KR', sans-serif;
+}
+
+/* ================= 결과 화면 ================= */
+#result{ display:none; }
+
+/* ===== 프리뷰 박스 ===== */
+#preview{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  overflow:hidden;
+  background:#fff;
+}
+
+/* ===== 저장 기준 캔버스 ===== */
+#capture.canvas{
+  width:1200px;
+  height:900px;
+  background:#fff;
+  padding:48px;
+  display:flex;
+  flex-direction:column;
+}
+
+/* 프리뷰 스케일 */
+#preview #capture{
+  transform-origin: top left;
+  transform: scale(var(--preview-scale, 1));
+}
+
+/* ================= 헤더 ================= */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:40px;
+}
+
+.title-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:38px;
+}
+
+.header h1{
+  font-size:1em;
+  margin:0;
+}
+
+.logo{
+  height:1em;
+  width:auto;
+  display:block;
+  object-fit:contain;
+}
+
+.credit{
+  background:#000;
+  color:#fff;
+  font-size:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  font-family:'Noto Sans KR', sans-serif;
+}
+
+/* ================= 2x3 그리드 ================= */
+.grid{
+  flex:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:repeat(3, 1fr);
+  gap:32px 36px;
+}
+
+/* ================= 카드 ================= */
+.card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  height:100%;
+}
+
+.card img{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.content{ flex:1; }
+
+/* ================= 공/수 바 ================= */
+.bar-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+  font-family:'Noto Sans KR', sans-serif;
+}
+
+/* ✅ 공/수 숫자 컬럼 (여기만 수정: side-col -> sidecol) */
+.sidecol{
+  width:36px;
+  text-align:center;
+  line-height:1.05;
+}
+
+.sidecol .label{
+  font-size:12px;
+  line-height:1.05;
+}
+
+.sidecol .num{
+  font-size:16px;
+  font-weight:700;
+  line-height:1.05;
+}
+
+/* 바 전체 */
+.bar{
+  position:relative;
+  width:100%;
+  height:16px;
+  background:#eee;
+  border:1px solid #000;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+/* 이동 바 */
+.bar-inner{
+  position:absolute;
+  top:0;
+  height:100%;
+  background:#000;
+  border-radius:999px;
+}
+
+/* ================= 텍스트 박스 ================= */
+.result-text{
+  font-family:'Noto Sans KR', sans-serif;
+  border:1px solid #000;
+  border-radius:14px;
+  padding:20px;
+  min-height:170px;
+  max-height:170px;
+  font-size:20px;
+  line-height:1.25;
+  overflow:hidden;
+  text-align:left;
+  word-break:break-word;
 }
