@@ -183,22 +183,37 @@ button{
 }
 
 /* ✅ 결과 OTP 표시 */
+/* OTP 결과 표시 (credit과 동일한 스타일) */
 .otp-display{
-  display:flex;
-  align-items:center;   /* 세로 기준 왼쪽 */
-  justify-content:flex-start; /* 가로 기준 왼쪽 */
+  display:inline-flex;
+  align-items:center;
   gap:8px;
-  text-align:left;
-}
-
-.otp-text{
-  font-size:12px;
-  color:#000;
+  background:#000;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:999px;
+  font-family:'Noto Sans KR', sans-serif;
+  font-size:10px;
   font-weight:500;
   line-height:1;
-  white-space:nowrap;
-  text-align:left;   /* ← 이 줄이 중요 */
 }
+
+.otp-display .otp-tag{
+  background:none;     /* 중복 배경 제거 */
+  padding:0;
+  font-weight:700;
+  font-size:10px;
+  color:#fff;
+}
+
+
+.otp-text{
+  min-width:1ch;       /* 미입력 시 pill 유지용 */
+  color:#fff;
+  text-align:left;
+  white-space:nowrap;
+}
+
 
 /* ================= 2x3 그리드 ================= */
 .grid{
@@ -287,3 +302,4 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
