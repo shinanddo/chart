@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>공수취향표</title>
 
-  <!-- ✅ Noto Sans KR -->
+  <!-- Noto Sans KR -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,18 +16,14 @@
 </head>
 
 <body>
-  <!-- 입력 화면 -->
   <div id="controls">
     <h2>공수취향표 생성</h2>
     <div id="inputs"></div>
     <button type="button" onclick="generate()">결과 생성</button>
   </div>
 
-  <!-- 결과 화면 -->
   <div id="result">
-    <!-- 화면에서만 축소해서 보여주는 프리뷰 래퍼 -->
     <div id="preview">
-      <!-- 저장 대상(원본 1200x900 고정) -->
       <div class="canvas" id="capture">
         <div class="header">
           <div class="title-wrap">
@@ -41,7 +37,6 @@
       </div>
     </div>
 
-    <!-- ✅ 버튼은 preview 바깥: 축소/overflow 영향 안 받게 -->
     <button type="button" onclick="saveImage()">이미지 저장</button>
   </div>
 </body>
