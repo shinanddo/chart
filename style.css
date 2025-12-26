@@ -207,14 +207,14 @@ button{
   background:none;     /* 중복 배경 제거 */
   padding:0;
   font-weight:700;
-  font-size:12px;
+  font-size:16px;
   color:#fff;
 }
 
 .otp-text{
   color:#000;
   font-weight:700;      /* ✅ 볼드 */
-  font-size:12px;
+  font-size:16px;
   line-height:1;
   text-align:left;
   white-space:nowrap;
@@ -310,6 +310,7 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
 
 
 
