@@ -157,10 +157,11 @@ function generate() {
 function saveImage() {
   const capture = document.getElementById("capture");
 
-  // ✅ 캡처 직전에 OTP 값 강제 반영(화면/클론 모두 대비)
+  // ✅ 캡처 직전에 OTP를 다시 주입 (입력 안 하면 빈칸)
   const otpIn = document.getElementById("otpIn");
-  const otpOut = document.getElementById("otpOut");
   const otpText = (otpIn?.value || "").trim().slice(0, 8);
+
+  const otpOut = document.getElementById("otpOut");
   if (otpOut) otpOut.textContent = otpText;
 
   // 프리뷰 transform 제거하고 캡처
@@ -169,7 +170,7 @@ function saveImage() {
   capture.style.transform = "none";
   capture.style.transformOrigin = "top left";
 
-  // ✅ 레이아웃 갱신 후 캡처(이게 진짜 중요)
+  // ✅ DOM 반영/레이아웃 갱신 시간을 주고 캡처 시작
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       html2canvas(capture, {
@@ -182,12 +183,13 @@ function saveImage() {
         windowWidth: CAPTURE_W,
         windowHeight: CAPTURE_H,
 
-        // ✅ html2canvas가 만드는 "클론 DOM"에도 OTP 텍스트 주입
+        // ✅ html2canvas가 만드는 "클론 DOM"에도 OTP 텍스트를 강제 주입
         onclone: (clonedDoc) => {
           const clonedOtpOut = clonedDoc.getElementById("otpOut");
           if (clonedOtpOut) clonedOtpOut.textContent = otpText;
         }
       }).then((canvas) => {
+        // 1200x900 fit
         const out = document.createElement("canvas");
         out.width = CAPTURE_W;
         out.height = CAPTURE_H;
@@ -217,4 +219,3 @@ function saveImage() {
     });
   });
 }
-
