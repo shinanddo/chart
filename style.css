@@ -196,7 +196,7 @@ button{
   justify-content:center;
   background:#000;
   color:#fff;
-  padding:16px 18px;
+  padding:12px 16px;
   border-radius:999px;
   font-family:'Noto Sans KR', sans-serif;
   font-size:16px;
@@ -205,22 +205,21 @@ button{
 }
 
 .otp-display .otp-tag{
-  background:none;     /* 중복 배경 제거 */
+  background:none;
   padding:0;
-  font-weight:700;
-  font-size:16px;
   color:#fff;
+  font-size:16px;      /* ✅ OTP 폰트 16 */
+  font-weight:700;     /* ✅ 볼드 */
+  line-height:1;
 }
 
 .otp-text{
-  color:#fff;
-  font-weight:700;      /* ✅ 볼드 */
-  font-size:16px;
-  line-height:1;
-  text-align:left;
-  white-space:nowrap;
   font-family:'Noto Sans KR', sans-serif;
-  display:block;
+  font-size:16px;      /* ✅ 텍스트도 16 */
+  font-weight:700;     /* ✅ 볼드 */
+  color:#000;          /* ✅ 블랙 */
+  line-height:1;
+  white-space:nowrap;
 }
 
 
@@ -311,6 +310,7 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
 
 
 
