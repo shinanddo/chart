@@ -22,6 +22,38 @@ button{
 /* ================= 입력 화면 ================= */
 #controls{ display:block; }
 
+.otp-input-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin: 12px 0 18px;
+}
+
+.otp-tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#000;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  line-height:1;
+  flex:0 0 auto;
+}
+
+#otpIn{
+  flex:1;
+  height:36px;
+  padding:0 12px;
+  border:1px solid #000;
+  border-radius:999px;
+  font-size:13px;
+  outline:none;
+  font-family:'Noto Sans KR', sans-serif;
+}
+
 .member-control{
   border:1px solid #000;
   border-radius:16px;
@@ -110,27 +142,32 @@ button{
 }
 
 /* ================= 헤더 ================= */
+/* ✅ 3분할: 왼쪽 OTP / 가운데 타이틀 / 오른쪽 크레딧 */
 .header{
-  display:flex;
-  justify-content:space-between;
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items:center;
   margin-bottom:40px;
 }
+
+.header-left{ justify-self:start; }
+.header-center{ justify-self:center; }
+.header-right{ justify-self:end; }
 
 .title-wrap{
   display:flex;
   align-items:center;
   gap:10px;
-  font-size:38px;
+  justify-content:center;
 }
 
 .header h1{
-  font-size:1em;
+  font-size:38px;
   margin:0;
 }
 
 .logo{
-  height:1.5em;
+  height:2em;
   width:auto;
   display:block;
   object-fit:contain;
@@ -143,6 +180,21 @@ button{
   padding:10px 14px;
   border-radius:999px;
   font-family:'Noto Sans KR', sans-serif;
+}
+
+/* ✅ 결과 OTP 표시 */
+.otp-display{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.otp-text{
+  font-size:12px;
+  color:#000;
+  font-weight:500;
+  line-height:1;
+  white-space:nowrap;
 }
 
 /* ================= 2x3 그리드 ================= */
@@ -180,22 +232,22 @@ button{
   font-family:'Noto Sans KR', sans-serif;
 }
 
-/* ✅ 공/수 숫자 컬럼 (여기만 수정: side-col -> sidecol) */
+/* ✅ 결과 공/수(라벨+숫자) 가운데 정렬 */
 .sidecol{
   width:36px;
   text-align:center;
-  line-height:1.1;
+  line-height:1.05;
 }
 
 .sidecol .label{
   font-size:12px;
-  line-height:1.1;
+  line-height:1.05;
 }
 
 .sidecol .num{
-  font-size:12px;
+  font-size:16px;
   font-weight:700;
-  line-height:1.1;
+  line-height:1.05;
 }
 
 /* 바 전체 */
@@ -232,9 +284,3 @@ button{
   text-align:left;
   word-break:break-word;
 }
-
-
-
-
-
-
