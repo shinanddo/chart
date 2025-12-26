@@ -185,7 +185,7 @@ button{
 /* ✅ 결과 OTP 표시 */
 /* OTP 결과 표시 (credit과 동일한 스타일) */
 .otp-display{
-  display:inline-flex;
+  display:flex;
   align-items:center;
   gap:8px;
   background:#000;
@@ -212,6 +212,7 @@ button{
   color:#fff;
   text-align:left;
   white-space:nowrap;
+  display:block;
 }
 
 
@@ -302,4 +303,5 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
 
