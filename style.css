@@ -161,18 +161,19 @@ button{
 
 .title-wrap{
   display:flex;
+  font-size:38px;
   align-items:center;
   gap:10px;
   justify-content:center;
 }
 
 .header h1{
-  font-size:38px;
+  font-size:1em;
   margin:0;
 }
 
 .logo{
-  height:2em;
+  height:1.5em;
   width:auto;
   display:block;
   object-fit:contain;
@@ -310,6 +311,7 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
 
 
 
