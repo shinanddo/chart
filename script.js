@@ -157,33 +157,37 @@ function generate() {
 async function saveImage() {
   const capture = document.getElementById("capture");
 
-  // ✅ 폰트 로딩 완료 대기(캡처 시 폰트 깨짐 방지)
-  if (document.fonts && document.fonts.ready) {
-    await document.fonts.ready;
-  }
-
-  // ✅ 캡처 직전에 OTP 등 동적 텍스트를 다시 한 번 주입(누락 방지)
+  // OTP 텍스트 보장 반영
   const otpIn = document.getElementById("otpIn");
   const otpText = (otpIn?.value || "").trim().slice(0, 8);
   const otpOut = document.getElementById("otpOut");
   if (otpOut) otpOut.textContent = otpText;
 
-  // 프리뷰 transform 제거하고 캡처
+  // 폰트 로딩 대기(폰트 깨짐 방지)
+  if (document.fonts && document.fonts.ready) {
+    await document.fonts.ready;
+  }
+
+  // 프리뷰 transform 제거
   const prevTransform = capture.style.transform;
   const prevOrigin = capture.style.transformOrigin;
-
   capture.style.transform = "none";
   capture.style.transformOrigin = "top left";
 
-  // ✅ 고해상도 캡처(화질 개선)
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-
-  // ✅ 레이아웃 안정화: 2프레임 대기
+  // 레이아웃 안정화: 2프레임 대기
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+  // === 3MP 제한에 맞춰 scale 계산 ===
+  // 기본: 1200 x 900 = 1.08MP
+  // 목표: <= 3MP → scale ≈ 1.6
+  const MAX_MP = 3_000_000;
+  const basePixels = CAPTURE_W * CAPTURE_H; // 1200*900
+  const maxScale = Math.sqrt(MAX_MP / basePixels);
+  const scale = Math.min(1.6, maxScale); // 안전값
 
   try {
     const canvas = await html2canvas(capture, {
-      scale: dpr,
+      scale,                   // ✅ 확대 캡처만 하고
       useCORS: true,
       allowTaint: true,
       backgroundColor: "#fff",
@@ -191,35 +195,22 @@ async function saveImage() {
       height: CAPTURE_H,
       windowWidth: CAPTURE_W,
       windowHeight: CAPTURE_H,
-      foreignObjectRendering: false,
       imageTimeout: 15000,
-
-      // ✅ 클론 DOM에도 OTP 재주입(브라우저별 누락 방지)
       onclone: (clonedDoc) => {
+        // 클론 DOM에도 OTP 반영
         const clonedOtpOut = clonedDoc.getElementById("otpOut");
         if (clonedOtpOut) clonedOtpOut.textContent = otpText;
       }
     });
 
-    // ✅ 최종 출력은 1200x900으로 고정 (너 기존 로직 유지)
-    const out = document.createElement("canvas");
-    out.width = CAPTURE_W;
-    out.height = CAPTURE_H;
-
-    const ctx = out.getContext("2d");
-    ctx.imageSmoothingEnabled = true;
-    ctx.fillStyle = "#fff";
-    ctx.fillRect(0, 0, out.width, out.height);
-
-    // canvas가 dpr로 커졌으니 원본 크기로 정확히 축소해서 넣기
-    ctx.drawImage(canvas, 0, 0, out.width, out.height);
-
+    // ✅ 확대된 캔버스를 그대로 PNG로 저장 (축소/재그리기 없음)
     const a = document.createElement("a");
-    a.href = out.toDataURL("image/png");
+    a.href = canvas.toDataURL("image/png");
     a.download = "twsrps.png";
     a.click();
+
   } catch (err) {
-    alert("이미지 저장 실패: CORS 또는 렌더링 문제일 수 있어요.");
+    alert("이미지 저장 실패: 렌더링 문제일 수 있어요.");
     console.error(err);
   } finally {
     capture.style.transform = prevTransform;
