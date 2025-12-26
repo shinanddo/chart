@@ -150,7 +150,12 @@ button{
   margin-bottom:40px;
 }
 
-.header-left{ justify-self:start; }
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
 .header-center{ justify-self:center; }
 .header-right{ justify-self:end; }
 
@@ -187,14 +192,14 @@ button{
 .otp-display{
   display:flex;
   align-items:center;
-  gap:8px;
+  justify-content:center;
   background:#000;
   color:#fff;
   padding:10px 14px;
   border-radius:999px;
   font-family:'Noto Sans KR', sans-serif;
   font-size:10px;
-  font-weight:500;
+  font-weight:700;
   line-height:1;
 }
 
@@ -209,7 +214,10 @@ button{
 
 .otp-text{
   min-width:1ch;       /* 미입력 시 pill 유지용 */
-  color:#fff;
+  color:#000;
+  font-weight:700;      /* ✅ 볼드 */
+  font-size:12px;
+  line-height:1;
   text-align:left;
   white-space:nowrap;
   display:block;
@@ -303,5 +311,6 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
 
 
