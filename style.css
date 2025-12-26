@@ -198,7 +198,7 @@ button{
   padding:10px 14px;
   border-radius:999px;
   font-family:'Noto Sans KR', sans-serif;
-  font-size:10px;
+  font-size:12px;
   font-weight:700;
   line-height:1;
 }
@@ -207,7 +207,7 @@ button{
   background:none;     /* 중복 배경 제거 */
   padding:0;
   font-weight:700;
-  font-size:10px;
+  font-size:12px;
   color:#fff;
 }
 
@@ -311,6 +311,7 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
 
 
 
