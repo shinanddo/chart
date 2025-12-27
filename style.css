@@ -22,6 +22,13 @@ button{
 /* ================= 입력 화면 ================= */
 #controls{ display:block; }
 
+.title-sub {
+  font-size: 12px;   /* OTP와 동일 */
+  color: #888;         /* OTP와 동일 */
+  font-weight: 400;
+  margin-left: 0.5em;
+}
+
 .otp-input-row{
   display:flex;
   align-items:center;
@@ -338,6 +345,7 @@ button{
   word-break:break-word;
   font-variant-numeric: tabular-nums;
 }
+
 
 
 
