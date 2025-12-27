@@ -328,11 +328,10 @@ button{
   line-height:1.25;
   overflow:hidden;
   text-align:left;
+  align-items:flex-start;
   word-break:break-word;
-  display:-webkit-box;       /* ✅ 라인 클램프 */
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;     /* ✅ 170px/폰트 기준 5줄 정도 */
 }
+
 
 
 
