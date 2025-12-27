@@ -316,7 +316,15 @@ button{
 
 /* ================= 텍스트 박스 ================= */
 .result-text{
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+  'Noto Sans KR',
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  Helvetica,
+  Arial,
+  sans-serif;
   font-weight:600;
   border:1px solid #000;
   border-radius:14px;
@@ -329,6 +337,7 @@ button{
   text-align:left;
   word-break:break-word;
 }
+
 
 
 
