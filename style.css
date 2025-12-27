@@ -362,13 +362,12 @@ button{
   font-size:20px;
   line-height:1.25;
   letter-spacing:-0.02em;
-  transform: scaleX(0.95);
-  transform-origin: left center;
   overflow:hidden;
   text-align:left;
   word-break:break-word;
   font-variant-numeric: tabular-nums;
 }
+
 
 
 
