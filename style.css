@@ -22,28 +22,39 @@ button{
 /* ================= 입력 화면 ================= */
 #controls{ display:block; }
 
+/* ✅ 타이틀 옆 링크 정렬 안정 (추가) */
 .title{
   display:flex;
   align-items:baseline;
 }
 
 .title-sub{
-  font-size:0.9rem;
-  color:#888;
-  font-weight:400;
-  margin-left:0.5em;
-  text-decoration:none;
-  cursor:pointer;
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 400;
+  margin-left: 0.5em;
+  text-decoration: none;
 }
-.title-sub:hover{ text-decoration:underline; }
+.title-sub:hover{
+  text-decoration: underline;
+}
+/* ✅ 링크가 파랗게/보라색으로 바뀌는 것 방지 (추가) */
 .title-sub:visited,
-.title-sub:active{ color:#888; }
+.title-sub:active{
+  color:#888;
+}
+
+/* ✅ OTP 안내(placeholder)를 title-sub과 동일 톤으로 고정 (추가) */
+#otpIn::placeholder{
+  color:#888;
+  opacity:1;
+}
 
 .otp-input-row{
   display:flex;
   align-items:center;
   gap:10px;
-  margin:12px 0 18px;
+  margin: 12px 0 18px;
 }
 
 .otp-tag{
@@ -57,6 +68,7 @@ button{
   font-size:12px;
   font-weight:700;
   line-height:1;
+  flex:0 0 auto;
 }
 
 #otpIn{
@@ -70,14 +82,69 @@ button{
   font-family:'Pretendard', sans-serif;
 }
 
-#otpIn::placeholder{
-  color:#888;
-  opacity:1;
+.member-control{
+  border:1px solid #000;
+  border-radius:16px;
+  padding:12px;
+  margin-bottom:18px;
+}
+
+.member-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.member-header img{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.range-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  margin-top:10px;
+}
+
+.range-row input[type=range]{ flex:1; }
+
+.range-row .side{
+  width:64px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+  font-family:'Pretendard', sans-serif;
+  line-height:1.1;
+}
+
+.range-row .side b{
+  font-weight:700;
+  font-size:14px;
+  line-height:1.1;
+}
+
+.member-control textarea{
+  width:100%;
+  height:70px;
+  margin-top:8px;
+  padding:8px;
+  border-radius:10px;
+  border:1px solid #000;
+  resize:none;
+  font-size:13px;
+  font-family:'Pretendard', sans-serif;
 }
 
 /* ================= 결과 화면 ================= */
 #result{ display:none; }
 
+/* ===== 프리뷰 박스 ===== */
 #preview{
   width:100%;
   max-width:1200px;
@@ -86,6 +153,7 @@ button{
   background:#fff;
 }
 
+/* ===== 저장 기준 캔버스 ===== */
 #capture.canvas{
   width:1200px;
   height:900px;
@@ -95,15 +163,17 @@ button{
   flex-direction:column;
 }
 
+/* 프리뷰 스케일 */
 #preview #capture{
   transform-origin: top left;
   transform: scale(var(--preview-scale, 1));
 }
 
 /* ================= 헤더 ================= */
+/* ✅ 3분할: 왼쪽 OTP / 가운데 타이틀 / 오른쪽 크레딧 */
 .header{
   display:grid;
-  grid-template-columns:1fr auto 1fr;
+  grid-template-columns: 1fr auto 1fr;
   align-items:center;
   margin-bottom:40px;
 }
@@ -122,6 +192,7 @@ button{
   font-size:38px;
   align-items:center;
   gap:10px;
+  justify-content:center;
 }
 
 .header h1{
@@ -132,6 +203,8 @@ button{
 .logo{
   height:1.5em;
   width:auto;
+  display:block;
+  object-fit:contain;
 }
 
 .credit{
@@ -140,12 +213,13 @@ button{
   font-size:12px;
   padding:10px 14px;
   border-radius:999px;
-  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                Roboto, Helvetica, Arial, sans-serif;
-  font-weight:600;
+  font-weight:600; /* 애플 UI 느낌에 가장 가까움 */
 }
 
-/* OTP 결과 표시 */
+/* ✅ 결과 OTP 표시 */
+/* OTP 결과 표시 (credit과 동일한 스타일) */
 .otp-display{
   display:flex;
   align-items:center;
@@ -154,20 +228,42 @@ button{
   color:#fff;
   padding:10px 14px;
   border-radius:999px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
   font-size:16px;
   font-weight:700;
   line-height:1;
+  position: relative;
+  top: -1px; 
+}
+
+.otp-display .otp-tag{
+  background:none;
+  padding:0;
+  color:#fff;
+  font-size:16px;      /* ✅ OTP 폰트 16 */
+  font-weight:700;     /* ✅ 볼드 */
+  line-height:1;
+}
+
+.otp-display, .otp-text{
+  line-height:16px;          /* font-size(16)와 동일하게 고정 */
+  display:flex;
+  align-items:center;        /* 수직 중앙 고정 */
 }
 
 .otp-text{
   font-family:'Pretendard', sans-serif;
-  font-size:16px;
-  font-weight:700;
-  color:#000;
+  font-size:16px;      /* ✅ 텍스트도 16 */
+  font-weight:700;     /* ✅ 볼드 */
+  color:#000;          /* ✅ 블랙 */
+  line-height:1;
   white-space:nowrap;
+  position: relative;
+  top: -1px; 
 }
 
-/* ================= 그리드 ================= */
+/* ================= 2x3 그리드 ================= */
 .grid{
   flex:1;
   display:grid;
@@ -176,11 +272,87 @@ button{
   gap:32px 36px;
 }
 
-/* ================= 결과 텍스트 ================= */
-.result-text{
-  font-family:'Pretendard', -apple-system, BlinkMacSystemFont,
-              "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-weight:600;
+/* ================= 카드 ================= */
+.card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  height:100%;
+}
+
+.card img{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.content{ flex:1; }
+
+/* ================= 공/수 바 ================= */
+.bar-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+  font-family:'Pretendard', sans-serif;
+}
+
+/* ✅ 결과 공/수(라벨+숫자) 가운데 정렬 */
+.sidecol{
+  width:36px;
+  text-align:center;
+  line-height:1.15;
+}
+
+.sidecol .label{
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.15;
+}
+
+.sidecol .num{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  font-size:14px;
+  font-weight:600;   /* 애플 UI 숫자 느낌 */
+  line-height:1.15;
+}
+
+/* 바 전체 */
+.bar{
+  position:relative;
+  width:100%;
+  height:18px;
+  background:#eee;
+  border:1px solid #000;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+/* 이동 바 */
+.bar-inner{
+  position:absolute;
+  top:0;
+  height:100%;
+  background:#000;
+  border-radius:999px;
+}
+
+/* ================= 텍스트 박스 ================= */
+.result-text {
+  font-family:
+    'Pretendard',
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-weight: 600;
   border:1px solid #000;
   border-radius:14px;
   padding:20px;
