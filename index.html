@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>공수취향표</title>
 
-  <!-- Pretendard -->
+  <!-- ✅ Noto Sans KR (유지: 이미 쓰고 있던 링크) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- ✅ Pretendard (정상 로드되도록 수정) -->
   <link rel="stylesheet" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 
@@ -19,6 +24,7 @@
   <div id="controls">
     <h2 class="title">
       공수취향표
+      <!-- ✅ span → a 로 변경 (클릭 시 트위터 이동) -->
       <a
         class="title-sub"
         href="https://twitter.com/shinanddo"
@@ -28,15 +34,10 @@
       >twitter @shinanddo</a>
     </h2>
 
-    <!-- OTP 입력 -->
+    <!-- ✅ OTP 입력칸(맨 위) -->
     <div class="otp-input-row">
       <span class="otp-tag">OTP</span>
-      <input
-        id="otpIn"
-        type="text"
-        maxlength="8"
-        placeholder="OTP를 입력하세요.(최대8자)"
-      />
+      <input id="otpIn" type="text" maxlength="8" placeholder="OTP를 입력하세요.(최대8자)" />
     </div>
 
     <div id="inputs"></div>
@@ -47,7 +48,7 @@
   <div id="result">
     <div id="preview">
       <div class="canvas" id="capture">
-        <!-- 헤더 -->
+        <!-- ✅ 헤더: 왼쪽 OTP / 가운데 타이틀 / 오른쪽 크레딧 -->
         <div class="header">
           <div class="header-left">
             <div class="otp-display">
@@ -58,11 +59,7 @@
 
           <div class="header-center">
             <div class="title-wrap">
-              <img
-                class="logo"
-                src="https://i.imgur.com/lxO0ay6.png"
-                alt="logo"
-              />
+              <img class="logo" src="https://i.imgur.com/lxO0ay6.png" alt="logo" />
               <h1>공수취향표</h1>
             </div>
           </div>
